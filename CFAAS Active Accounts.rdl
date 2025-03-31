@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>f72f60ce-0390-4183-b46e-ef8928604120</rd:ReportID>
+  <am:AuthoringMetadata>
+    <am:CreatedBy>
+      <am:Name>WebAuthoring</am:Name>
+      <am:Version>2025.1.4.1736</am:Version>
+    </am:CreatedBy>
+    <am:UpdatedBy>
+      <am:Name>PBIRB</am:Name>
+      <am:Version>15.7.1806.11</am:Version>
+    </am:UpdatedBy>
+    <am:LastModifiedTimestamp>2025-02-14T20:02:30.0344778Z</am:LastModifiedTimestamp>
+  </am:AuthoringMetadata>
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="CFAASActiveAccounts">
+      <rd:SecurityType>None</rd:SecurityType>
+      <ConnectionProperties>
+        <DataProvider>PBIDATASET</DataProvider>
+        <ConnectString>Data Source=pbiazure://api.powerbi.com/;Identity Provider="https://login.microsoftonline.com/common, https://analysis.windows.net/powerbi/api, f0b72488-7082-488a-a7e8-eada97bd842d";Initial Catalog=sobe_wowvirtualserver-a42cf981-002c-4922-9c30-78f265b81469;Integrated Security=ClaimsToken</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>13178c4a-5121-4d50-95bb-f33a7ccd265e</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>CFAASActiveAccounts</DataSourceName>
+        <CommandText>DEFINE VAR __DS0Core = 
+	SUMMARIZE(
+		'T_CFAAS_ACTIVE_ACCTS',
+		'T_CFAAS_ACTIVE_ACCTS'[CUST_ACCT_ID],
+		'T_CFAAS_ACTIVE_ACCTS'[LAST_SALE_DATE],
+		'T_CFAAS_ACTIVE_ACCTS'[CUSTOMER_STATUS]
+	)
+
+EVALUATE
+	__DS0Core
+
+ORDER BY
+	'T_CFAAS_ACTIVE_ACCTS'[CUST_ACCT_ID],
+	'T_CFAAS_ACTIVE_ACCTS'[LAST_SALE_DATE],
+	'T_CFAAS_ACTIVE_ACCTS'[CUSTOMER_STATUS]</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_CUST_5f_ACCT_5f_ID">
+          <DataField>T_CFAAS_ACTIVE_ACCTS[CUST_ACCT_ID]</DataField>
+        </Field>
+        <Field Name="T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_LAST_5f_SALE_5f_DATE">
+          <DataField>T_CFAAS_ACTIVE_ACCTS[LAST_SALE_DATE]</DataField>
+        </Field>
+        <Field Name="T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_CUSTOMER_5f_STATUS">
+          <DataField>T_CFAAS_ACTIVE_ACCTS[CUSTOMER_STATUS]</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>47.625mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>47.625mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>47.625mm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5e19762a0faa4b3f9ccec64cde2818e1">
+                          <CanGrow>true</CanGrow>
+                          <UserSort>
+                            <SortExpression>=Fields!T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_CUST_5f_ACCT_5f_ID.Value</SortExpression>
+                          </UserSort>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>CUST_ACCT_ID</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI Semibold</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                    <Color>=Variables!Style_FontColorHeaders.Value</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>=Variables!Style_OutlineColor.Value</Color>
+                              <Style>=If(Variables!Style_HeaderEnableBorderBottom.Value = "true", "Solid", "None")</Style>
+                              <Width>=If(Variables!Style_HeaderBorderBottomWeight.Value = "",             Variables!Style_GridHorizontalWeight.Value, Variables!Style_HeaderBorderBottomWeight.Value)</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>=Variables!Style_BackColorHeaders.Value</Color>
+                              <Style>=If(Variables!Style_GridVerticalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridVerticalWeight.Value</Width>
+                            </LeftBorder>
+                            <BackgroundColor>=Variables!Style_BackColorHeaders.Value</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>4pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9b86734deddd42e5ad14c72de0d0ceca">
+                          <CanGrow>true</CanGrow>
+                          <UserSort>
+                            <SortExpression>=Fields!T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_LAST_5f_SALE_5f_DATE.Value</SortExpression>
+                          </UserSort>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>LAST_SALE_DATE</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI Semibold</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                    <Format>D</Format>
+                                    <Color>=Variables!Style_FontColorHeaders.Value</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>=Variables!Style_OutlineColor.Value</Color>
+                              <Style>=If(Variables!Style_HeaderEnableBorderBottom.Value = "true", "Solid", "None")</Style>
+                              <Width>=If(Variables!Style_HeaderBorderBottomWeight.Value = "",             Variables!Style_GridHorizontalWeight.Value, Variables!Style_HeaderBorderBottomWeight.Value)</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>=Variables!Style_GridColor.Value</Color>
+                              <Style>=If(Variables!Style_GridVerticalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridVerticalWeight.Value</Width>
+                            </LeftBorder>
+                            <BackgroundColor>=Variables!Style_BackColorHeaders.Value</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>4pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textboxd2d51a7fcf2546ff8cf4a625ef46190c">
+                          <CanGrow>true</CanGrow>
+                          <UserSort>
+                            <SortExpression>=Fields!T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_CUSTOMER_5f_STATUS.Value</SortExpression>
+                          </UserSort>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>CUSTOMER_STATUS</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI Semibold</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                    <Color>=Variables!Style_FontColorHeaders.Value</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>=Variables!Style_OutlineColor.Value</Color>
+                              <Style>=If(Variables!Style_HeaderEnableBorderBottom.Value = "true", "Solid", "None")</Style>
+                              <Width>=If(Variables!Style_HeaderBorderBottomWeight.Value = "",             Variables!Style_GridHorizontalWeight.Value, Variables!Style_HeaderBorderBottomWeight.Value)</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>=Variables!Style_GridColor.Value</Color>
+                              <Style>=If(Variables!Style_GridVerticalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridVerticalWeight.Value</Width>
+                            </LeftBorder>
+                            <BackgroundColor>=Variables!Style_BackColorHeaders.Value</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>4pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2a282201bb234e2d8c7306b2e09e0fff">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_CUST_5f_ACCT_5f_ID.Value</Value>
+                                  <Style>
+                                    <Color>=If(RowNumber(Nothing) Mod 2 &lt;&gt; 0, Variables!Style_FontColorValues1.Value, Variables!Style_FontColorValues2.Value)</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <DataElementName>T_CFAAS_ACTIVE_ACCTS_CUST_ACCT_ID</DataElementName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>=Variables!Style_GridColor.Value</Color>
+                              <Style>=If(Variables!Style_GridHorizontalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridHorizontalWeight.Value</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>=If(RowNumber(Nothing) Mod 2 &lt;&gt; 0, Variables!Style_BackColorValues1.Value, Variables!Style_BackColorValues2.Value)</Color>
+                              <Style>=If(Variables!Style_GridVerticalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridVerticalWeight.Value</Width>
+                            </LeftBorder>
+                            <BackgroundColor>=If(RowNumber(Nothing) Mod 2 &lt;&gt; 0, Variables!Style_BackColorValues1.Value, Variables!Style_BackColorValues2.Value)</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                            <PaddingTop>=Variables!Style_RowPadding.Value</PaddingTop>
+                            <PaddingBottom>=Variables!Style_RowPadding.Value</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7c7d6bf8848a444e9c470eeeec1b786c">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_LAST_5f_SALE_5f_DATE.Value</Value>
+                                  <Style>
+                                    <Format>D</Format>
+                                    <Color>=If(RowNumber(Nothing) Mod 2 &lt;&gt; 0, Variables!Style_FontColorValues1.Value, Variables!Style_FontColorValues2.Value)</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <DataElementName>T_CFAAS_ACTIVE_ACCTS_LAST_SALE_DATE</DataElementName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>=Variables!Style_GridColor.Value</Color>
+                              <Style>=If(Variables!Style_GridHorizontalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridHorizontalWeight.Value</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>=Variables!Style_GridColor.Value</Color>
+                              <Style>=If(Variables!Style_GridVerticalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridVerticalWeight.Value</Width>
+                            </LeftBorder>
+                            <BackgroundColor>=If(RowNumber(Nothing) Mod 2 &lt;&gt; 0, Variables!Style_BackColorValues1.Value, Variables!Style_BackColorValues2.Value)</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                            <PaddingTop>=Variables!Style_RowPadding.Value</PaddingTop>
+                            <PaddingBottom>=Variables!Style_RowPadding.Value</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox184d5798ee0b4fe498be8bd29005a733">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!T_5f_CFAAS_5f_ACTIVE_5f_ACCTS_CUSTOMER_5f_STATUS.Value</Value>
+                                  <Style>
+                                    <Color>=If(RowNumber(Nothing) Mod 2 &lt;&gt; 0, Variables!Style_FontColorValues1.Value, Variables!Style_FontColorValues2.Value)</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <DataElementName>T_CFAAS_ACTIVE_ACCTS_CUSTOMER_STATUS</DataElementName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>=Variables!Style_GridColor.Value</Color>
+                              <Style>=If(Variables!Style_GridHorizontalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridHorizontalWeight.Value</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>=Variables!Style_GridColor.Value</Color>
+                              <Style>=If(Variables!Style_GridVerticalEnabledTable.Value = "true", "Solid", "None")</Style>
+                              <Width>=Variables!Style_GridVerticalWeight.Value</Width>
+                            </LeftBorder>
+                            <BackgroundColor>=If(RowNumber(Nothing) Mod 2 &lt;&gt; 0, Variables!Style_BackColorValues1.Value, Variables!Style_BackColorValues2.Value)</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>5pt</PaddingRight>
+                            <PaddingTop>=Variables!Style_RowPadding.Value</PaddingTop>
+                            <PaddingBottom>=Variables!Style_RowPadding.Value</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>0mm</Top>
+            <Height>0.5in</Height>
+            <Width>142.875mm</Width>
+            <Style />
+          </Tablix>
+        </ReportItems>
+        <Height>2.25in</Height>
+        <Style />
+      </Body>
+      <Width>190.5mm</Width>
+      <Page>
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.5in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Language>=User!Language</Language>
+  <Variables>
+    <Variable Name="Theme_BackGroundColor">
+      <Value>#FFFFFF</Value>
+    </Variable>
+    <Variable Name="Theme_ForeGroundColor">
+      <Value>#252423</Value>
+    </Variable>
+    <Variable Name="Theme_TableAccentColor">
+      <Value>#118DFF</Value>
+    </Variable>
+    <Variable Name="Style_OutlineColor">
+      <Value>#118DFF</Value>
+    </Variable>
+    <Variable Name="Style_GridColor">
+      <Value>#E5E5E5</Value>
+    </Variable>
+    <Variable Name="Style_GridVerticalEnabledTable">
+      <Value>false</Value>
+    </Variable>
+    <Variable Name="Style_GridVerticalWeight">
+      <Value>0pt</Value>
+    </Variable>
+    <Variable Name="Style_GridHorizontalEnabledTable">
+      <Value>true</Value>
+    </Variable>
+    <Variable Name="Style_GridHorizontalWeight">
+      <Value>0.5pt</Value>
+    </Variable>
+    <Variable Name="Style_HeaderEnableBorderBottom">
+      <Value>true</Value>
+    </Variable>
+    <Variable Name="Style_HeaderBorderBottomWeight">
+      <Value>1.0pt</Value>
+    </Variable>
+    <Variable Name="Style_BackColorHeaders">
+      <Value>#FFFFFF</Value>
+    </Variable>
+    <Variable Name="Style_FontColorHeaders">
+      <Value>#252423</Value>
+    </Variable>
+    <Variable Name="Style_BackColorValues1">
+      <Value>#FFFFFF</Value>
+    </Variable>
+    <Variable Name="Style_BackColorValues2">
+      <Value>#EEEDED</Value>
+    </Variable>
+    <Variable Name="Style_FontColorValues2">
+      <Value>#252423</Value>
+    </Variable>
+    <Variable Name="Style_FontColorValues1">
+      <Value>#252423</Value>
+    </Variable>
+    <Variable Name="Style_RowPadding">
+      <Value>3pt</Value>
+    </Variable>
+  </Variables>
+</Report>
